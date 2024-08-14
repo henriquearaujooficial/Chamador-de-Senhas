@@ -1,7 +1,7 @@
 # Gerador de Senha
 Projeto feito na SEPD
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/henriquearaujooficial/python_certificate/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/LICENSE)
 
 # 🛠️ Projeto construído usando:
 - HTML
