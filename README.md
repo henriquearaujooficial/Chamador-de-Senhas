@@ -51,6 +51,8 @@ Forçar Chamada de Guichê → Chamada manual para um guichê específico.
 Resetar Senhas → Reinicialização dos valores das senhas e guichês.
 Finalização de Atendimento → Liberar o guichê para novo atendimento.
 
-Link para o post no Medium: [Gerador de Senhas](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/.github/senha%20.png)
+
+
+Link para o post no Medium: ![Gerador de Senhas](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/.github/senha%20.png)
 
 ![gameScreen](./template.png)
