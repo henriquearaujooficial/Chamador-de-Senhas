@@ -4,7 +4,7 @@ Projeto feito na SEPD
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/LICENSE)
 
 # 🛠️ Projeto construído usando:
-```html
+```bash
 - HTML
 - CSS
 - JS
