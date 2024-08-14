@@ -4,9 +4,11 @@ Projeto feito na SEPD
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/LICENSE)
 
 # 🛠️ Projeto construído usando:
+```html
 - HTML
 - CSS
 - JS
+```
 
 # Gerador de Senhas e suas descrições:
 
@@ -53,4 +55,4 @@ Finalização de Atendimento → Liberar o guichê para novo atendimento.
 
 
 
-![gameScreen](./senha.png)
+![GERADOR DE SENHA](./senha.png)
