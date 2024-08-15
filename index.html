@@ -8,6 +8,8 @@
     <link href="css/style.css" rel="stylesheet">
     <script src="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script> <!-- Inclusão da biblioteca SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx-style/0.8.16/xlsx-style.min.js"></script> <!-- Inclusão da biblioteca xlsx-style -->
     <link rel="icon" href="imagens/SEPD.png" type="image/x-icon">
     <style>
         body {
@@ -163,8 +165,8 @@
         // Inicializar valores
         let senhaAtual = 0;
         let ultimaSenha = 0;
-        let contagemAtendimentos = 0;  // Variável para rastrear atendimentos diários
-        let registrosAtendimentos = [];  // Array para armazenar os registros
+        let contagemAtendimentos = 0;
+        let registrosAtendimentos = [];
 
         // Mapear senhas para guichês
         const guiches = {
@@ -188,14 +190,10 @@
 
         // Função para formatar a data e hora
         function formatarDataHora(dataHora) {
-            return dataHora.toLocaleString('pt-BR', {
-                day: '2-digit', 
-                month: '2-digit', 
-                year: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit'
-            });
+            return {
+                data: dataHora.toLocaleDateString('pt-BR'),
+                hora: dataHora.toLocaleTimeString('pt-BR')
+            };
         }
 
         // Função para atualizar o display da senha, guichê e contagem
@@ -214,24 +212,26 @@
             let guicheAtual = prompt("Digite o número do guichê (1-6) para a próxima senha:");
 
             if (guiches[guicheAtual]) {
-                guichesStatus[guicheAtual] = "ocupado";  // Marcar o guichê como ocupado para esta chamada
+                guichesStatus[guicheAtual] = "ocupado";
                 document.getElementById('guicheNumero').textContent = guiches[guicheAtual];
                 
                 // Capturar data e hora do atendimento
                 let dataHoraAtual = new Date();
+                let dataHoraFormatada = formatarDataHora(dataHoraAtual);
                 let registro = {
-                    data: formatarDataHora(dataHoraAtual),
-                    senha: senhaAtual.toString().padStart(4, '0'),
-                    guiche: guiches[guicheAtual]
+                    Data: dataHoraFormatada.data,
+                    Hora: dataHoraFormatada.hora,
+                    Senha: senhaAtual.toString().padStart(4, '0'),
+                    Guiche: guiches[guicheAtual]
                 };
-                registrosAtendimentos.push(registro); // Adicionar o registro ao array
+                registrosAtendimentos.push(registro);
                 
                 atualizarDisplay();
                 document.getElementById('audioChamada').play();
             } else {
                 alert("Guichê inválido.");
                 senhaAtual--;
-                contagemAtendimentos--; // Reverta a contagem de atendimentos em caso de erro
+                contagemAtendimentos--;
             }
         }
 
@@ -239,27 +239,67 @@
         function resetarSenhas() {
             senhaAtual = 0;
             ultimaSenha = 0;
-            contagemAtendimentos = 0;  // Resetar a contagem de atendimentos
+            contagemAtendimentos = 0;
             atualizarDisplay();
         }
 
-        // Função para exportar os dados para CSV
-        function exportarParaCSV() {
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Data,Senha,Guichê\n";  // Cabeçalhos
+        // Função para exportar os dados para Excel
+        function exportarParaExcel() {
+            // Estilos para a aba de atendimentos
+            const estiloCabecalho = {
+                font: { bold: true, caps: true },
+                fill: { fgColor: { rgb: "FFFF00" } },
+                alignment: { horizontal: "center" }
+            };
+
+            // Estilos para a aba resumo
+            const estiloResumo = {
+                font: { bold: true },
+                alignment: { horizontal: "center" }
+            };
+
+            // Criar a aba de atendimentos
+            let wsAtendimentos = XLSX.utils.json_to_sheet(registrosAtendimentos);
+            let wsAtendimentosRange = XLSX.utils.decode_range(wsAtendimentos['!ref']);
             
-            registrosAtendimentos.forEach(function(registro) {
-                let linha = `${registro.data},${registro.senha},${registro.guiche}\n`;
-                csvContent += linha;
+            // Aplicar estilos ao cabeçalho
+            for (let col = wsAtendimentosRange.s.c; col <= wsAtendimentosRange.e.c; col++) {
+                const cellAddress = { c: col, r: wsAtendimentosRange.s.r };
+                const cellRef = XLSX.utils.encode_cell(cellAddress);
+                if (wsAtendimentos[cellRef]) {
+                    wsAtendimentos[cellRef].s = estiloCabecalho;
+                }
+            }
+
+            // Criar a aba de resumo
+            let wsResumo = XLSX.utils.aoa_to_sheet([
+                ["Total de Atendimentos", contagemAtendimentos],
+                ["Total de Senhas Geradas", senhaAtual]
+            ]);
+
+            // Aplicar estilos ao resumo
+            const cellAddresses = [
+                { c: 0, r: 0 },
+                { c: 1, r: 0 },
+                { c: 0, r: 1 },
+                { c: 1, r: 1 }
+            ];
+
+            cellAddresses.forEach(({ c, r }) => {
+                const cellAddress = { c, r };
+                const cellRef = XLSX.utils.encode_cell(cellAddress);
+                if (wsResumo[cellRef]) {
+                    wsResumo[cellRef].s = estiloResumo;
+                }
             });
 
-            let encodedUri = encodeURI(csvContent);
-            let link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `atendimentos_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Criar o workbook e adicionar as abas
+            let wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, wsAtendimentos, "Atendimentos");
+            XLSX.utils.book_append_sheet(wb, wsResumo, "Resumo");
+
+            let nomeArquivo = `atendimentos_${new Date().toISOString().split('T')[0]}.xlsx`;
+            XLSX.writeFile(wb, nomeArquivo);
         }
 
         // Adicionar evento para as teclas de atalho
@@ -268,8 +308,8 @@
                 incrementarSenha();
             } else if (event.key === 'r') {
                 resetarSenhas();
-            } else if (event.key === 's') {  // Pressione "s" para salvar os dados
-                exportarParaCSV();
+            } else if (event.key === 's') {
+                exportarParaExcel(); // Pressione "s" para salvar os dados como Excel
             }
         });
     </script>
