@@ -1,12 +1,14 @@
 # Gerador de Senha
 Projeto feito na SEPD
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/henriquearaujooficial/python_certificate/blob/main/LICENSE)
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/LICENSE)
 
 # 🛠️ Projeto construído usando:
+```bash
 - HTML
 - CSS
 - JS
+```
 
 # Gerador de Senhas e suas descrições:
 
@@ -53,6 +55,4 @@ Finalização de Atendimento → Liberar o guichê para novo atendimento.
 
 
 
-Link para o post no Medium: ![Gerador de Senhas](https://github.com/henriquearaujooficial/Chamador-de-Senhas/blob/main/.github/senha%20.png)
-
-![gameScreen](./senha .png)
+![GERADOR DE SENHA](./senha.png)
