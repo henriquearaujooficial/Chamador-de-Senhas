@@ -115,6 +115,13 @@
             color: #DAE908;
             margin-top: 0%;
         }
+
+        .contagemAtendimentos {
+            margin-top: 5%;
+            font-size: 4vw;
+            color: #ffffff;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +153,9 @@
                 <span id="ultimaSenhaNumero">0000</span>
             </div>
         </div>
+        <div class="row contagemAtendimentos">
+            <span id="contagemAtendimentosTexto">Atendimentos Hoje: 0</span>
+        </div>
     </div>
     <audio id="audioChamada" src="audio/chamada.wav"></audio>
 
@@ -153,6 +163,7 @@
         // Inicializar valores
         let senhaAtual = 0;
         let ultimaSenha = 0;
+        let contagemAtendimentos = 0;  // Variável para rastrear atendimentos diários
 
         // Mapear senhas para guichês
         const guiches = {
@@ -174,16 +185,18 @@
             6: "liberado"
         };
 
-        // Função para atualizar o display da senha e guichê
+        // Função para atualizar o display da senha, guichê e contagem
         function atualizarDisplay() {
             document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
             document.getElementById('ultimaSenhaNumero').textContent = ultimaSenha.toString().padStart(4, '0');
+            document.getElementById('contagemAtendimentosTexto').textContent = "Atendimentos Hoje: " + contagemAtendimentos;
         }
 
         // Função para incrementar a senha e direcionar ao guichê apropriado
         function incrementarSenha() {
             ultimaSenha = senhaAtual;
             senhaAtual++;
+            contagemAtendimentos++;  // Incrementar a contagem de atendimentos
 
             let guicheAtual = prompt("Digite o número do guichê (1-6) para a próxima senha:");
 
@@ -195,13 +208,15 @@
             } else {
                 alert("Guichê inválido.");
                 senhaAtual--; // Reverta a senha em caso de erro
+                contagemAtendimentos--; // Reverta a contagem de atendimentos em caso de erro
             }
         }
 
-        // Função para resetar senhas
+        // Função para resetar senhas e contagem de atendimentos
         function resetarSenhas() {
             senhaAtual = 0;
             ultimaSenha = 0;
+            contagemAtendimentos = 0;  // Resetar a contagem de atendimentos
             atualizarDisplay();
         }
 
