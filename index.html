@@ -164,6 +164,7 @@
         let senhaAtual = 0;
         let ultimaSenha = 0;
         let contagemAtendimentos = 0;  // Variável para rastrear atendimentos diários
+        let registrosAtendimentos = [];  // Array para armazenar os registros
 
         // Mapear senhas para guichês
         const guiches = {
@@ -185,6 +186,18 @@
             6: "liberado"
         };
 
+        // Função para formatar a data e hora
+        function formatarDataHora(dataHora) {
+            return dataHora.toLocaleString('pt-BR', {
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit'
+            });
+        }
+
         // Função para atualizar o display da senha, guichê e contagem
         function atualizarDisplay() {
             document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
@@ -196,18 +209,28 @@
         function incrementarSenha() {
             ultimaSenha = senhaAtual;
             senhaAtual++;
-            contagemAtendimentos++;  // Incrementar a contagem de atendimentos
+            contagemAtendimentos++;
 
             let guicheAtual = prompt("Digite o número do guichê (1-6) para a próxima senha:");
 
             if (guiches[guicheAtual]) {
                 guichesStatus[guicheAtual] = "ocupado";  // Marcar o guichê como ocupado para esta chamada
                 document.getElementById('guicheNumero').textContent = guiches[guicheAtual];
+                
+                // Capturar data e hora do atendimento
+                let dataHoraAtual = new Date();
+                let registro = {
+                    data: formatarDataHora(dataHoraAtual),
+                    senha: senhaAtual.toString().padStart(4, '0'),
+                    guiche: guiches[guicheAtual]
+                };
+                registrosAtendimentos.push(registro); // Adicionar o registro ao array
+                
                 atualizarDisplay();
                 document.getElementById('audioChamada').play();
             } else {
                 alert("Guichê inválido.");
-                senhaAtual--; // Reverta a senha em caso de erro
+                senhaAtual--;
                 contagemAtendimentos--; // Reverta a contagem de atendimentos em caso de erro
             }
         }
@@ -220,12 +243,33 @@
             atualizarDisplay();
         }
 
+        // Função para exportar os dados para CSV
+        function exportarParaCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Data,Senha,Guichê\n";  // Cabeçalhos
+            
+            registrosAtendimentos.forEach(function(registro) {
+                let linha = `${registro.data},${registro.senha},${registro.guiche}\n`;
+                csvContent += linha;
+            });
+
+            let encodedUri = encodeURI(csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `atendimentos_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         // Adicionar evento para as teclas de atalho
         document.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowRight') {
                 incrementarSenha();
             } else if (event.key === 'r') {
                 resetarSenhas();
+            } else if (event.key === 's') {  // Pressione "s" para salvar os dados
+                exportarParaCSV();
             }
         });
     </script>
