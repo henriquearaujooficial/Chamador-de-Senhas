@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEPD</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/scripts.js"></script>
-	<link rel="icon" href="imagens/SEPD.png" type="image/x-icon">
+    <link rel="icon" href="imagens/SEPD.png" type="image/x-icon">
     <style>
-        /* Estilo personalizado para garantir responsividade em uma televisão */
         body {
             background-color: #0761AC;
             margin: 0;
@@ -150,7 +151,7 @@
 
     <script>
         // Inicializar valores
-        let senhaAtual = null;
+        let senhaAtual = 0;
         let ultimaSenha = 0;
 
         // Mapear senhas para guichês
@@ -167,7 +168,7 @@
         let guichesStatus = {
             1: "liberado",
             2: "liberado",
-            3: "ocupado",
+            3: "liberado",
             4: "liberado",
             5: "liberado",
             6: "liberado"
@@ -175,54 +176,31 @@
 
         // Função para atualizar o display da senha e guichê
         function atualizarDisplay() {
-            document.getElementById('senhaAtualNumero').textContent = senhaAtual !== null ? senhaAtual.toString().padStart(4, '0') : '0000';
+            document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
             document.getElementById('ultimaSenhaNumero').textContent = ultimaSenha.toString().padStart(4, '0');
-            const guiche = document.getElementById('guicheNumero').textContent;
-            document.getElementById('guicheNumero').textContent = guiche;
         }
 
-        // Função para selecionar o próximo guichê liberado
-        function selecionarGuicheLiberado() {
-            for (const guiche in guichesStatus) {
-                if (guichesStatus[guiche] === "liberado") {
-                    return guiche;
-                }
-            }
-            return "N/A";
-        }
-
-        // Função para incrementar a senha
+        // Função para incrementar a senha e direcionar ao guichê apropriado
         function incrementarSenha() {
-            if (senhaAtual === null) {
-                senhaAtual = 1;
-            } else {
-                ultimaSenha = senhaAtual;
-                senhaAtual++;
-            }
+            ultimaSenha = senhaAtual;
+            senhaAtual++;
 
-            const guicheAtual = Math.ceil(senhaAtual / 10);
-            if (guichesStatus[guicheAtual] === "ocupado") {
-                const guicheLiberado = selecionarGuicheLiberado();
-                if (guicheLiberado !== "N/A") {
-                    guichesStatus[guicheLiberado] = "ocupado";
-                    guichesStatus[guicheAtual] = "liberado";
-                    document.getElementById('guicheNumero').textContent = guiches[guicheLiberado];
-                } else {
-                    alert('Nenhum guichê liberado disponível.');
-                    return;
-                }
-            } else {
-                guichesStatus[guicheAtual] = "ocupado";
+            let guicheAtual = prompt("Digite o número do guichê (1-6) para a próxima senha:");
+
+            if (guiches[guicheAtual]) {
+                guichesStatus[guicheAtual] = "ocupado";  // Marcar o guichê como ocupado para esta chamada
                 document.getElementById('guicheNumero').textContent = guiches[guicheAtual];
+                atualizarDisplay();
+                document.getElementById('audioChamada').play();
+            } else {
+                alert("Guichê inválido.");
+                senhaAtual--; // Reverta a senha em caso de erro
             }
-
-            atualizarDisplay();
-            document.getElementById('audioChamada').play();
         }
 
         // Função para resetar senhas
         function resetarSenhas() {
-            senhaAtual = null;
+            senhaAtual = 0;
             ultimaSenha = 0;
             atualizarDisplay();
         }
@@ -233,14 +211,6 @@
                 incrementarSenha();
             } else if (event.key === 'r') {
                 resetarSenhas();
-            } else if (event.key === 'g') {
-                const guiche = prompt("Digite o número do guichê (1-6):");
-                if (guiches[guiche]) {
-                    document.getElementById('guicheNumero').textContent = guiches[guiche];
-                    incrementarSenha();
-                } else {
-                    alert("Guichê inválido.");
-                }
             }
         });
     </script>
