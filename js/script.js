@@ -54,8 +54,9 @@
  function atualizarDisplay(prefixo = '') {
      document.getElementById('senhaPrefixo').textContent = prefixo;
      document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
-     document.getElementById('ultimaSenhaNumero').textContent = prefixo + ultimaSenha.toString().padStart(4, '0');
-     
+     document.getElementById('ultimaSenhaNumero').innerHTML = 
+ `<span style="color: #FFFF;">${prefixo} </span>${ultimaSenha.toString().padStart(4, '0')}`;
+ 
      //Implementação de uma div de atendiemnto diário div foi retirada
      //document.getElementById('contagemAtendimentosTexto').textContent = "Atendimentos Hoje: " + contagemAtendimentos;
  }

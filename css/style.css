@@ -31,6 +31,10 @@ body {
     flex-grow: 1;
 }
 
+.box{
+    padding-top: 10px;
+}
+
 .row {
     display: flex;
     justify-content: center;
@@ -63,14 +67,14 @@ body {
 }
 
 #senhaAtualNumero {
-    font-size: 6vw; /* Aumentado para maior impacto visual */
+    font-size: 5vw; /* Aumentado para maior impacto visual */
     font-weight: 600;
     color: #DAE908;
     margin-left: 1vw;
 }
 
 #guicheNumero {
-    font-size: 6vw; /* Aumentado para acompanhar o tamanho do número da senha */
+    font-size: 5vw; /* Aumentado para acompanhar o tamanho do número da senha */
     font-weight: 600;
     color: #DAE908;
 }
@@ -81,18 +85,19 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-bottom: 5%;
 }
 
 #ultimaSenhaTexto {
     margin-top: 3%;
-    font-size: 3vw; /* Aumentado para maior clareza */
+    font-size: 4vw; /* Aumentado para maior clareza */
     color: #DAE908;
     margin-bottom: 0%;
 }
 
 #senhaDescricao {
     margin-top: 5%;
-    font-size: 5vw; /* Aumentado para melhor leitura */
+    font-size: 4vw; /* Aumentado para melhor leitura */
     font-weight: 600;
     color: #FFFF;
     margin-top: 0%;
@@ -103,13 +108,13 @@ body {
 
 #ultimaSenhaNumero {
     margin-top: 5%;
-    font-size: 6vw; /* Aumentado para se destacar */
+    font-size: 5vw; /* Aumentado para se destacar */
     color: #DAE908;
     margin-top: 0%;
 }
 
 .contagemAtendimentos {
-    margin-top: 1%;
+    margin-top: 10%;
     font-size: 2vw; /* Aumentado para maior visibilidade */
     color: #FFFFFF;
     text-align: center;
@@ -120,4 +125,111 @@ body {
     font-size: 5vw; /* Ajuste o tamanho conforme necessário */
     font-weight: 600;
     margin-right: 0.5vw; /* Pequeno espaço entre o prefixo e o número da senha */
+}
+
+/* Media Queries para diferentes tamanhos de tela */
+
+/* Telas muito grandes (por exemplo, 4K) */
+@media (min-width: 2560px) {
+    .uespiTexto {
+        font-size: 2.5vw;
+    }
+
+    .senhaAtualTexto, .guicheTexto {
+        font-size: 4vw;
+    }
+
+    #senhaAtualNumero, #guicheNumero {
+        font-size: 5vw;
+    }
+
+    #ultimaSenhaTexto {
+        font-size: 2.5vw;
+    }
+
+    #senhaDescricao {
+        font-size: 4vw;
+    }
+
+    #ultimaSenhaNumero {
+        font-size: 5vw;
+    }
+
+    .contagemAtendimentos {
+        font-size: 1.5vw;
+    }
+
+    .senhaPrefixo {
+        font-size: 4vw;
+    }
+}
+
+/* Telas menores (por exemplo, 720p) */
+@media (max-width: 1366px) {
+    .uespiTexto {
+        font-size: 4vw;
+    }
+
+    .senhaAtualTexto, .guicheTexto {
+        font-size: 6vw;
+    }
+
+    #senhaAtualNumero, #guicheNumero {
+        font-size: 7vw;
+    }
+
+    #ultimaSenhaTexto {
+        font-size: 4vw;
+    }
+
+    #senhaDescricao {
+        font-size: 6vw;
+    }
+
+    #ultimaSenhaNumero {
+        font-size: 7vw;
+    }
+
+    .contagemAtendimentos {
+        font-size: 3vw;
+    }
+
+    .senhaPrefixo {
+        font-size: 6vw;
+    }
+}
+
+/* Telas muito pequenas (por exemplo, menos de 720p) */
+@media (max-width: 1024px) {
+    .uespiTexto {
+        font-size: 5vw;
+    }
+
+    .senhaAtualTexto, .guicheTexto {
+        font-size: 7vw;
+    }
+
+    #senhaAtualNumero, #guicheNumero {
+        font-size: 8vw;
+    }
+
+    #ultimaSenhaTexto {
+        font-size: 5vw;
+    }
+
+    #senhaDescricao {
+        font-size: 7vw;
+    }
+
+    #ultimaSenhaNumero {
+        font-size: 8vw;
+    }
+
+    .contagemAtendimentos {
+        font-size: 4vw;
+    }
+
+    .senhaPrefixo {
+        font-size: 7vw;
+    }
 }
