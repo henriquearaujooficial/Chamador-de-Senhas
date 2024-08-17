@@ -127,6 +127,14 @@
             color: #FFFFFF;
             text-align: center;
         }
+
+        .senhaPrefixo {
+            color: #FFFFFF; /* Cor branca */
+            font-size: 5vw; /* Ajuste o tamanho conforme necessário */
+            font-weight: 600;
+            margin-right: 0.5vw; /* Pequeno espaço entre o prefixo e o número da senha */
+        }
+        
     </style>
     
 </head>
@@ -148,6 +156,7 @@
                 </div>
                 <div>
                     <div class="senhaAtualTexto">SENHA</div>
+                    <span id="senhaPrefixo" class="senhaPrefixo">CAD</span>
                     <span id="senhaAtualNumero">0000</span>
                 </div>
             </div>
@@ -157,9 +166,6 @@
             <div id="senhaDescricao">
                 Senha:    
                 <span id="ultimaSenhaNumero">0000</span>
-            </div>
-            <div class="row contagemAtendimentos">
-                <span id="contagemAtendimentosTexto">Atendimentos Hoje: 0</span>
             </div>
         </div>
     </div>
@@ -192,7 +198,7 @@
             6: "liberado"
         };
 
-        // Função para formatar a data e hora
+        //Função para formatar a data e hora
         function formatarDataHora(dataHora) {
             return {
                 data: dataHora.toLocaleDateString('pt-BR'),
@@ -200,21 +206,23 @@
             };
         }
 
-        // Função para atualizar o display da senha, guichê e contagem
+       // Função para atualizar o display da senha, guichê e contagem
         function atualizarDisplay(prefixo = "") {
-            document.getElementById('senhaAtualNumero').textContent = prefixo + senhaAtual.toString().padStart(4, '0');
+            document.getElementById('senhaPrefixo').textContent = prefixo;
+            document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
             document.getElementById('ultimaSenhaNumero').textContent = prefixo + ultimaSenha.toString().padStart(4, '0');
             document.getElementById('contagemAtendimentosTexto').textContent = "Atendimentos Hoje: " + contagemAtendimentos;
         }
+
 
         // Função para incrementar a senha e direcionar ao guichê apropriado
         function incrementarSenha(prefixo) {
             ultimaSenha = senhaAtual;
             senhaAtual++;
             contagemAtendimentos++;
-
+        
             let guicheAtual = prompt("Digite o número do guichê (1-6) para a próxima senha:");
-
+        
             if (guiches[guicheAtual]) {
                 guichesStatus[guicheAtual] = "ocupado";
                 document.getElementById('guicheNumero').textContent = guiches[guicheAtual];
@@ -237,7 +245,7 @@
                 senhaAtual--;
                 contagemAtendimentos--;
             }
-        }
+        }        
 
         // Função para resetar senhas e contagem de atendimentos
         function resetarSenhas() {
@@ -248,17 +256,22 @@
 
         // Função para resetar guichê
         function resetarGuiche() {
+            // Reseta o status de todos os guichês para "liberado"
             for (let guiche in guichesStatus) {
                 guichesStatus[guiche] = "liberado";
             }
+            // Atualiza o display do guichê para "0"
             document.getElementById('guicheNumero').textContent = "0";
-            atualizarDisplay();
+            console.log("Guichê resetado para 0"); // Depuração
         }
 
         // Função para resetar senhas e guichê
         function resetarSenhasEGuiche() {
             resetarSenhas();
-            resetarGuiche();
+            resetarGuiche();  // Chama a função que zera o guichê
+            // Atualiza o display geral, incluindo o prefixo da senha
+            atualizarDisplay('');
+            console.log("Senhas e guichê resetados"); // Depuração
         }
 
         // Função para exportar os dados para Excel
@@ -313,18 +326,19 @@
             XLSX.writeFile(wb, nomeArquivo);
         }
 
-        // Adicionar evento para as teclas de atalho
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight') {
-                incrementarSenha('CAD');
-            } else if (event.key === 'ArrowUp') {
-                incrementarSenha('BRB');
-            } else if (event.key === 'r') {
-                resetarSenhasEGuiche();
-            } else if (event.key === 's') {
-                exportarParaExcel();
-            }
-        });
+       // Adicionar evento para as teclas de atalho
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowRight') {
+                    incrementarSenha('CAD');
+                } else if (event.key === 'ArrowUp') {
+                    incrementarSenha('BRB');
+                } else if (event.key === 'r') {
+                    resetarSenhasEGuiche();  // Resetar senha e guichê ao pressionar "r"
+                } else if (event.key === 's') {
+                    exportarParaExcel();
+                }
+            });
+
     </script>
 </body>
 </html>
