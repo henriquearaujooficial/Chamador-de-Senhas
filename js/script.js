@@ -55,7 +55,7 @@
      document.getElementById('senhaPrefixo').textContent = prefixo;
      document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
      document.getElementById('ultimaSenhaNumero').innerHTML = 
- `<span style="color: #FFFF;">${prefixo} </span>${ultimaSenha.toString().padStart(4, '0')}`;
+    `<span style="color: #FFFF;">${prefixo} </span>${ultimaSenha.toString().padStart(4, '0')}`;
  
      //Implementação de uma div de atendiemnto diário div foi retirada
      //document.getElementById('contagemAtendimentosTexto').textContent = "Atendimentos Hoje: " + contagemAtendimentos;
@@ -139,7 +139,6 @@
       contagemAtendimentos--;
     }   
     }
-
 
  // Função para resetar senhas e contagem de atendimentos
  function resetarSenhas() {
@@ -229,30 +228,5 @@
       resetarSenhasEGuiche(); // Resetar senha e guichê ao pressionar "r"
     } else if (event.key === "s" || event.key === "S") {
       exportarParaExcel();
-    }
+    }
   });
-
-    // Adicionar evento para as teclas de atalho
-    // document.addEventListener('keydown', function(event) {
-    // let prefixo = '';
-
-    // if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
-    //     // Determina o prefixo baseado no guichê selecionado
-    //     let guicheAtual = parseInt(prompt("Digite o número do guichê (1-12) para a próxima senha:"));
-        
-    //     if (guicheAtual >= 1 && guicheAtual <= 6) {
-    //         prefixo = 'CAD';
-    //     } else if (guicheAtual >= 7 && guicheAtual <= 12) {
-    //         prefixo = 'BRB';
-    //     } else {
-    //         alert("Guichê inválido.");
-    //         return;  // Sai da função se o guichê for inválido
-    //     }
-
-    //     incrementarSenha(prefixo);
-    //      } else if (event.key === 'r' || event.key === 'R') {
-    //          resetarSenhasEGuiche();  // Resetar senha e guichê ao pressionar "r"
-    //      } else if (event.key === 's' || event.key === 'S') {
-    //          exportarParaExcel();
-    //      }
-    //  });
