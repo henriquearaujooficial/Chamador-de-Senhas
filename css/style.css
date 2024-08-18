@@ -23,7 +23,7 @@ body {
 }
 
 .uespiTexto {
-    font-size: 3.5vw; /* Aumentado para melhor visibilidade */
+    font-size: 3vw; /* Aumentado para melhor visibilidade */
     font-weight: 600;
     color: #DAE908;
     margin: 0;
@@ -60,21 +60,21 @@ body {
 }
 
 .senhaAtualTexto, .guicheTexto {
-    font-size: 5vw; /* Aumentado para maior visibilidade */
+    font-size: 4vw; /* Aumentado para maior visibilidade */
     font-weight: 600;
     color: #FFFFFF;
     margin: 0;
 }
 
 #senhaAtualNumero {
-    font-size: 5vw; /* Aumentado para maior impacto visual */
+    font-size: 3vw; /* Aumentado para maior impacto visual */
     font-weight: 600;
     color: #DAE908;
     margin-left: 1vw;
 }
 
 #guicheNumero {
-    font-size: 5vw; /* Aumentado para acompanhar o tamanho do número da senha */
+    font-size: 3vw; /* Aumentado para acompanhar o tamanho do número da senha */
     font-weight: 600;
     color: #DAE908;
 }
@@ -90,14 +90,14 @@ body {
 
 #ultimaSenhaTexto {
     margin-top: 3%;
-    font-size: 4vw; /* Aumentado para maior clareza */
+    font-size: 3vw; /* Aumentado para maior clareza */
     color: #DAE908;
     margin-bottom: 0%;
 }
 
 #senhaDescricao {
     margin-top: 5%;
-    font-size: 4vw; /* Aumentado para melhor leitura */
+    font-size: 3vw; /* Aumentado para melhor leitura */
     font-weight: 600;
     color: #FFFF;
     margin-top: 0%;
@@ -107,22 +107,22 @@ body {
 }
 
 #ultimaSenhaNumero {
-    margin-top: 5%;
-    font-size: 5vw; /* Aumentado para se destacar */
+    margin-top: 4%;
+    font-size: 2vw; /* Aumentado para se destacar */
     color: #DAE908;
     margin-top: 0%;
 }
 
 .contagemAtendimentos {
     margin-top: 10%;
-    font-size: 2vw; /* Aumentado para maior visibilidade */
+    font-size: 3vw; /* Aumentado para maior visibilidade */
     color: #FFFFFF;
     text-align: center;
 }
 
 .senhaPrefixo {
     color: #FFFFFF; /* Cor branca */
-    font-size: 5vw; /* Ajuste o tamanho conforme necessário */
+    font-size: 3vw; /* Ajuste o tamanho conforme necessário */
     font-weight: 600;
     margin-right: 0.5vw; /* Pequeno espaço entre o prefixo e o número da senha */
 }
@@ -140,7 +140,7 @@ body {
     }
 
     #senhaAtualNumero, #guicheNumero {
-        font-size: 5vw;
+        font-size: 4vw;
     }
 
     #ultimaSenhaTexto {
@@ -152,7 +152,7 @@ body {
     }
 
     #ultimaSenhaNumero {
-        font-size: 5vw;
+        font-size: 4vw;
     }
 
     .contagemAtendimentos {
