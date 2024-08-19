@@ -50,48 +50,16 @@
      };
  }
 
-// Função para atualizar o display da senha, guichê e contagem
- function atualizarDisplay(prefixo = '') {
-     document.getElementById('senhaPrefixo').textContent = prefixo;
-     document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
-     document.getElementById('ultimaSenhaNumero').innerHTML = 
-    `<span style="color: #FFFF;">${prefixo} </span>${ultimaSenha.toString().padStart(4, '0')}`;
- 
-     //Implementação de uma div de atendiemnto diário div foi retirada
-     //document.getElementById('contagemAtendimentosTexto').textContent = "Atendimentos Hoje: " + contagemAtendimentos;
- }
-
- // Função para incrementar a senha e direcionar ao guichê apropriado
-//  function incrementarSenha(prefixo) {
-//      ultimaSenha = senhaAtual;
-//      senhaAtual++;
-//      contagemAtendimentos++;
- 
-//      let guicheAtual = prompt("Digite o número do guichê (1-12) para a próxima senha:");
- 
-//      if (guiches[guicheAtual]) {
-//          guichesStatus[guicheAtual] = "ocupado";
-//          document.getElementById('guicheNumero').textContent = guiches[guicheAtual];
-         
-//          // Capturar data e hora do atendimento
-//          let dataHoraAtual = new Date();
-//          let dataHoraFormatada = formatarDataHora(dataHoraAtual);
-//          let registro = {
-//              Data: dataHoraFormatada.data,
-//              Hora: dataHoraFormatada.hora,
-//              Senha: prefixo + senhaAtual.toString().padStart(4, '0'),
-//              Guiche: guiches[guicheAtual]
-//          };
-//          registrosAtendimentos.push(registro);
-         
-//          atualizarDisplay(prefixo);
-//          document.getElementById('audioChamada').play();
-//      } else {
-//          alert("Guichê inválido.");
-//          senhaAtual--;
-//          contagemAtendimentos--;
-//      }
-//  }
+    // Função para atualizar o display da senha, guichê e contagem
+    function atualizarDisplay(prefixo = '') {
+        document.getElementById('senhaPrefixo').textContent = prefixo;
+        document.getElementById('senhaAtualNumero').textContent = senhaAtual.toString().padStart(4, '0');
+        document.getElementById('ultimaSenhaNumero').innerHTML = 
+        `<span style="color: #FFFF;">${prefixo} </span>${ultimaSenha.toString().padStart(4, '0')}`;
+    
+        //Implementação de uma div de atendiemnto diário div foi retirada
+        //document.getElementById('contagemAtendimentosTexto').textContent = "Atendimentos Hoje: " + contagemAtendimentos;
+    }
 
     function determinarPrefixo(guicheNumero) {
     if (guicheNumero >= 1 && guicheNumero <= 6) {
@@ -106,7 +74,7 @@
     }
     }
 
-    // Função para incrementar a senha e direcionar ao guichê apropriado
+// Função para incrementar a senha e direcionar ao guichê apropriado
     function incrementarSenha() {
     ultimaSenha = senhaAtual;
     senhaAtual++;
@@ -230,3 +198,29 @@
       exportarParaExcel();
     }
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});
+
+function atualizarSenha() {
+    fetch('/atualizar-senha', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ senha: senhaAtual })
+    });
+}
