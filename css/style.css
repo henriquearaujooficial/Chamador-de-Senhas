@@ -10,7 +10,7 @@ body {
 
 .container {
   max-width: 100vw;
-  padding: 0 2vw; /* Ajustado para um pouco mais de espaço nas laterais */
+  padding: 0 2vw; /* Ajustado par a um pouco mais de espaço nas laterais */
 }
 
 .barraSuperior {
