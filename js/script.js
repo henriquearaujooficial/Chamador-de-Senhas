@@ -5,6 +5,7 @@
  let registrosAtendimentos = [];
 
  // Mapear senhas para guichês
+
  const guiches = {
      1: "01",
      2: "02",
@@ -20,7 +21,10 @@
      12: "12",
      13: "13",
      14: "14",
-     15: "15"
+     15: "15",
+     16: "16",
+     17: "17",
+     18: "18"
  };
 
  // Mapear status dos guichês (ocupado ou liberado)
@@ -39,16 +43,19 @@
      12: "liberado",
      13: "liberado",
      14: "liberado",
-     15: "liberado"
+     15: "liberado",
+     16: "liberado",
+     17: "liberado",
+     18: "liberado"
  };
 
- //Função para formatar a data e hora
- function formatarDataHora(dataHora) {
+    //Função para formatar a data e hora
+    function formatarDataHora(dataHora) {
      return {
          data: dataHora.toLocaleDateString('pt-BR'),
          hora: dataHora.toLocaleTimeString('pt-BR')
      };
- }
+    }
 
     // Função para atualizar o display da senha, guichê e contagem
     function atualizarDisplay(prefixo = '') {
@@ -66,7 +73,7 @@
       return "CAD";
     } else if (guicheNumero >= 7 && guicheNumero <= 12) {
       return "BRB";
-    } else if (guicheNumero >= 13 && guicheNumero <= 15){
+    } else if (guicheNumero >= 13 && guicheNumero <= 18){
         return "DEF";
     }
     else {
