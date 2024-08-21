@@ -1,238 +1,244 @@
 body {
-    background-color: #0761AC;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-    height: 100vh; /* Ocupa toda a altura da tela */
-    width: 100vw; /* Ocupa toda a largura da tela */
+  background-color: #0761ac;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  height: 100vh; /* Ocupa toda a altura da tela */
+  width: 100vw; /* Ocupa toda a largura da tela */
 }
 
 .container {
-    max-width: 100vw;
-    padding: 0 2vw; /* Ajustado para um pouco mais de espaço nas laterais */
+  max-width: 100vw;
+  padding: 0 2vw; /* Ajustado para um pouco mais de espaço nas laterais */
 }
 
 .barraSuperior {
-    height: 15%; /* Aumentado para ocupar mais espaço na tela grande */
-    display: flex;
-    align-items: center;
-    margin-top: 5%; /* Diminuído para melhor alinhamento */
+  height: 15%; /* Aumentado para ocupar mais espaço na tela grande */
+  display: flex;
+  align-items: center;
+  margin-top: 5%; /* Diminuído para melhor alinhamento */
 }
 
 .uespiLogo {
-    max-width: 75%; /* Reduzido para evitar que a logo ocupe muito espaço */
+  max-width: 75%; /* Reduzido para evitar que a logo ocupe muito espaço */
 }
 
 .uespiTexto {
-    font-size: 3vw; /* Aumentado para melhor visibilidade */
-    font-weight: 600;
-    color: #DAE908;
-    margin: 0;
-    text-align: center;
-    flex-grow: 1;
+  font-size: 3vw; /* Aumentado para melhor visibilidade */
+  font-weight: 600;
+  color: #dae908;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
 }
 
-.box{
-    padding-top: 10px;
-    
+.box {
+  padding-top: 10px;
 }
 
 .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0%; /* Mantido o espaçamento */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0%; /* Mantido o espaçamento */
 }
 
 .senhaAtual {
-    background-color: #0761AC;
-    color: #FFFFFF;
-    padding: 0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #0761ac;
+  color: #ffffff;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .senhaGuicheContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
 }
 
-.senhaAtualTexto, .guicheTexto {
-    font-size: 4vw; /* Aumentado para maior visibilidade */
-    font-weight: 600;
-    color: #FFFFFF;
-    margin: 0;
+.senhaAtualTexto,
+.guicheTexto {
+  font-size: 4vw; /* Aumentado para maior visibilidade */
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
 }
 
 #senhaAtualNumero {
-    font-size: 3vw; /* Aumentado para maior impacto visual */
-    font-weight: 600;
-    color: #DAE908;
-    margin-left: 1vw;
+  font-size: 3vw; /* Aumentado para maior impacto visual */
+  font-weight: 600;
+  color: #dae908;
+  margin-left: 1vw;
 }
 
 #guicheNumero {
-    font-size: 3vw; /* Aumentado para acompanhar o tamanho do número da senha */
-    font-weight: 600;
-    color: #DAE908;
+  font-size: 3vw; /* Aumentado para acompanhar o tamanho do número da senha */
+  font-weight: 600;
+  color: #dae908;
 }
 
 .ultimaSenha {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5%;
 }
 
 #ultimaSenhaTexto {
-    margin-top: 3%;
-    font-size: 3vw; /* Aumentado para maior clareza */
-    color: #DAE908;
-    margin-bottom: 0%;
+  margin-top: 3%;
+  font-size: 3vw; /* Aumentado para maior clareza */
+  color: #dae908;
+  margin-bottom: 0%;
 }
 
 #senhaDescricao {
-    margin-top: 5%;
-    font-size: 3vw; /* Aumentado para melhor leitura */
-    font-weight: 600;
-    color: #FFFF;
-    margin-top: 0%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 5%;
+  font-size: 3vw; /* Aumentado para melhor leitura */
+  font-weight: 600;
+  color: #ffff;
+  margin-top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #ultimaSenhaNumero {
-    margin-top: 4%;
-    font-size: 2vw; /* Aumentado para se destacar */
-    color: #DAE908;
-    margin-top: 0%;
+  margin-top: 4%;
+  font-size: 2vw; /* Aumentado para se destacar */
+  color: #dae908;
+  margin-top: 0%;
 }
 
 .contagemAtendimentos {
-    margin-top: 10%;
-    font-size: 3vw; /* Aumentado para maior visibilidade */
-    color: #FFFFFF;
-    text-align: center;
+  margin-top: 10%;
+  font-size: 3vw; /* Aumentado para maior visibilidade */
+  color: #ffffff;
+  text-align: center;
 }
 
 .senhaPrefixo {
-    color: #FFFFFF; /* Cor branca */
-    font-size: 3vw; /* Ajuste o tamanho conforme necessário */
-    font-weight: 600;
-    margin-right: 0.5vw; /* Pequeno espaço entre o prefixo e o número da senha */
+  color: #ffffff; /* Cor branca */
+  font-size: 3vw; /* Ajuste o tamanho conforme necessário */
+  font-weight: 600;
+  margin-right: 0.5vw; /* Pequeno espaço entre o prefixo e o número da senha */
 }
 
 /* Media Queries para diferentes tamanhos de tela */
 
 /* Telas muito grandes (por exemplo, 4K) */
 @media (min-width: 2560px) {
-    .uespiTexto {
-        font-size: 2.5vw;
-    }
+  .uespiTexto {
+    font-size: 2.5vw;
+  }
 
-    .senhaAtualTexto, .guicheTexto {
-        font-size: 4vw;
-    }
+  .senhaAtualTexto,
+  .guicheTexto {
+    font-size: 4vw;
+  }
 
-    #senhaAtualNumero, #guicheNumero {
-        font-size: 4vw;
-    }
+  #senhaAtualNumero,
+  #guicheNumero {
+    font-size: 4vw;
+  }
 
-    #ultimaSenhaTexto {
-        font-size: 2.5vw;
-    }
+  #ultimaSenhaTexto {
+    font-size: 2.5vw;
+  }
 
-    #senhaDescricao {
-        font-size: 4vw;
-    }
+  #senhaDescricao {
+    font-size: 4vw;
+  }
 
-    #ultimaSenhaNumero {
-        font-size: 4vw;
-    }
+  #ultimaSenhaNumero {
+    font-size: 4vw;
+  }
 
-    .contagemAtendimentos {
-        font-size: 1.5vw;
-    }
+  .contagemAtendimentos {
+    font-size: 1.5vw;
+  }
 
-    .senhaPrefixo {
-        font-size: 4vw;
-    }
+  .senhaPrefixo {
+    font-size: 4vw;
+  }
 }
 
 /* Telas menores (por exemplo, 720p) */
 @media (max-width: 1366px) {
-    .uespiTexto {
-        font-size: 4vw;
-    }
+  .uespiTexto {
+    font-size: 4vw;
+  }
 
-    .senhaAtualTexto, .guicheTexto {
-        font-size: 6vw;
-    }
+  .senhaAtualTexto,
+  .guicheTexto {
+    font-size: 6vw;
+  }
 
-    #senhaAtualNumero, #guicheNumero {
-        font-size: 7vw;
-    }
+  #senhaAtualNumero,
+  #guicheNumero {
+    font-size: 7vw;
+  }
 
-    #ultimaSenhaTexto {
-        font-size: 4vw;
-    }
+  #ultimaSenhaTexto {
+    font-size: 4vw;
+  }
 
-    #senhaDescricao {
-        font-size: 6vw;
-    }
+  #senhaDescricao {
+    font-size: 6vw;
+  }
 
-    #ultimaSenhaNumero {
-        font-size: 7vw;
-    }
+  #ultimaSenhaNumero {
+    font-size: 7vw;
+  }
 
-    .contagemAtendimentos {
-        font-size: 3vw;
-    }
+  .contagemAtendimentos {
+    font-size: 3vw;
+  }
 
-    .senhaPrefixo {
-        font-size: 6vw;
-    }
+  .senhaPrefixo {
+    font-size: 6vw;
+  }
 }
 
 /* Telas muito pequenas (por exemplo, menos de 720p) */
 @media (max-width: 1024px) {
-    .uespiTexto {
-        font-size: 5vw;
-    }
+  .uespiTexto {
+    font-size: 5vw;
+  }
 
-    .senhaAtualTexto, .guicheTexto {
-        font-size: 7vw;
-    }
+  .senhaAtualTexto,
+  .guicheTexto {
+    font-size: 7vw;
+  }
 
-    #senhaAtualNumero, #guicheNumero {
-        font-size: 8vw;
-    }
+  #senhaAtualNumero,
+  #guicheNumero {
+    font-size: 8vw;
+  }
 
-    #ultimaSenhaTexto {
-        font-size: 5vw;
-    }
+  #ultimaSenhaTexto {
+    font-size: 5vw;
+  }
 
-    #senhaDescricao {
-        font-size: 7vw;
-    }
+  #senhaDescricao {
+    font-size: 7vw;
+  }
 
-    #ultimaSenhaNumero {
-        font-size: 8vw;
-    }
+  #ultimaSenhaNumero {
+    font-size: 8vw;
+  }
 
-    .contagemAtendimentos {
-        font-size: 4vw;
-    }
+  .contagemAtendimentos {
+    font-size: 4vw;
+  }
 
-    .senhaPrefixo {
-        font-size: 7vw;
-    }
+  .senhaPrefixo {
+    font-size: 7vw;
+  }
 }
